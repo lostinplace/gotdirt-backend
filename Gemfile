@@ -29,6 +29,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'devise'
 gem 'mongoid', '~> 4.0.2'
 gem "bson_ext"
+gem 'omniauth-facebook'
 
 gem 'thin'
 
@@ -44,4 +45,3 @@ gem 'thin'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
