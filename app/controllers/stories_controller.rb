@@ -4,7 +4,7 @@ class StoriesController < ApplicationController
   respond_to :html, :json
 
   def index
-    @stories = Story.all
+    @stories = Story.order_by([:date_time, :desc])
     respond_with(@stories)
   end
 
@@ -42,6 +42,6 @@ class StoriesController < ApplicationController
     end
 
     def story_params
-      params.require(:story).permit(:user, :story, :about_who, :lat, :lon)
+      params.permit(:story, :user, :about_who, :lat, :lon, :date_time)
     end
 end
