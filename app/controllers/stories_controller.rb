@@ -1,4 +1,7 @@
+require 'net/http'
+
 class StoriesController < ApplicationController
+
   before_action :set_story, only: [:show, :edit, :update, :destroy]
 
   respond_to :html, :json
@@ -23,6 +26,10 @@ class StoriesController < ApplicationController
   def create
     @story = Story.new(story_params)
     @story.save
+
+    # notify apps of the update
+    kick_it
+    
     respond_with(@story)
   end
 
@@ -35,6 +42,14 @@ class StoriesController < ApplicationController
     @story.destroy
     respond_with(@story)
   end
+
+  def kick_it
+
+    d = { :where => {}, :data => { :content_available => 1 } }.to_json
+    x = {:content_type => :json,  :accept => :json, 'X-Parse-Application-Id' => 'ZMxqeVdkwRrzYkxZXcIVpLFfdQv8EKHbimvDgMUi',  'X-Parse-REST-API-Key' => 'ajE8BLrvIZRG767n1AMq5kVF76UHY0WxRJOmbspe'}
+    RestClient.post "https://api.parse.com/1/push", d,  x
+
+ end
 
   private
     def set_story

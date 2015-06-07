@@ -37,6 +37,7 @@ gem 'rspec-rails'
 gem 'mongoid-rspec'
 
 gem 'factory_girl_rails'
+gem 'rest_client'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
