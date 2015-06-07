@@ -42,6 +42,6 @@ class StoriesController < ApplicationController
     end
 
     def story_params
-      params.permit(:story, :user, :about_who, :lat, :lon, :date_time)
+      params.permit(:story, :user, :about_who, :lat, :lon, :date_time, :tags)
     end
 end
