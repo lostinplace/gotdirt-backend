@@ -7,7 +7,12 @@ class StoriesController < ApplicationController
   respond_to :html, :json
 
   def index
-    @stories = Story.order_by([:date_time, :desc])
+
+    if params[:user]
+      @stories = Story.where(:user => params[:user]).order_by([:date_time, :desc])
+    else 
+      @stories = Story.order_by([:date_time, :desc])
+    end
     respond_with(@stories)
   end
 
@@ -29,7 +34,7 @@ class StoriesController < ApplicationController
 
     # notify apps of the update
     kick_it
-    
+
     respond_with(@story)
   end
 
